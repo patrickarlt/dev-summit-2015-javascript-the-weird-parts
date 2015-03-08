@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="css/theme/esri.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/solarized.css">
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
@@ -41,9 +41,299 @@
 					<h1>JavaScript: The Weird Parts</h1>
 					<h3>Patrick Arlt</h3>
 					<p>Experience Developer - ArcGIS for Developers</p>
-					<p><a href="http://twitter.com/patrickarlt">@patrickarlt</a> - <a href="http://patrickarlt.github.io/dev-summit-2015-javascript-the-weird-parts">BITLY LINK!!!!</a></p>
+					<p><a href="http://twitter.com/patrickarlt">@patrickarlt</a> - <a href="http://patrickarlt.github.io/dev-summit-2015-javascript-the-weird-parts">http://arcg.is/1wFtcQK</a></p>
 				</section>
 
+				<section>
+					<h2>I Have A Goal</h2>
+					<p>I will convince you that you are all crazy for liking JavaScript by the end of this talk.</p>
+				</section>
+
+				<section>
+					<h3>Example #1</h3>
+					<pre><code class="javascript">var foo = 1;
+
+function bar() {
+	if (!foo) {
+		var foo = 10;
+	}
+
+	alert(foo);
+}
+
+bar();</code></pre>
+				</section>
+
+				<section>
+					<h3>Example #2</h3>
+					<pre><code class="javascript">var a = 1;
+
+function b() {
+  a = 10;
+
+	return;
+
+	function a() {};
+}
+
+b();
+
+alert(a);</code></pre>
+				</section>
+
+				<section>
+					<h2>Hoisting &amp; Variable Scope</h2>
+				</section>
+
+				<section>
+					<h3>Example #1</h3>
+					<pre><code class="javascript">var foo = 1;
+
+function bar() {
+	if (!foo) {
+		var foo = 10;
+	}
+
+	alert(foo);
+}
+
+bar();</code></pre>
+				</section>
+
+				<section>
+					<h3>Example #1 Explaination</h3>
+					<pre><code class="javascript">var foo = 1;
+
+function bar() {
+	var foo; // declaration hoisted
+
+	if (!foo) { // foo is undefined
+		foo = 10;
+	}
+
+	alert(foo); // 10
+}
+
+bar();</code></pre>
+				</section>
+
+				<section>
+					<h3>Example #2</h3>
+					<pre><code class="javascript">var a = 1;
+
+function b() {
+  a = 10;
+
+	return;
+
+	function a() {};
+}
+
+b();
+
+alert(a);</code></pre>
+				</section>
+
+				<section>
+					<h3>Example #2 Explaination</h3>
+					<pre><code class="javascript">var a = 1;
+
+function b() {
+	function a() {} // a is now a local declaration in function b
+
+  a = 10; // assign a, now in the local scope to 10
+
+	return;
+}
+
+b();
+
+alert(a); // 1</code></pre>
+				</section>
+
+				<section>
+					<h2>Lesson</h2>
+					<p>There is a reason your linter yells at you about declaring all variables and functions at the top.</p>
+				</section>
+
+				<section></section>
+
+				<section>
+					<pre><code class="javascript">Math.max() > Math.min()</code></pre>
+					<pre class="fragment"><code class="javascript">false</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">Math.max() // > -Infinity
+Math.min() // > Infinity</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">isFinite(42)</code></pre>
+					<pre class="fragment"><code class="javascript">true</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">isFinite(1/0)</code></pre>
+					<pre class="fragment"><code class="javascript">false</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">isFinite(undefined)</code></pre>
+					<pre class="fragment"><code class="javascript">false</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">isFinite(null)</code></pre>
+					<pre class="fragment"><code class="javascript">true</code></pre>
+				</section>
+
+				<section></section>
+
+				<section>
+					<pre><code class="javascript">[] + []</code></pre>
+					<pre class="fragment"><code class="javascript">""</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">{} + {}</code></pre>
+					<pre class="fragment"><code class="javascript">NaN</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">[] + {}</code></pre>
+					<pre class="fragment"><code class="javascript">"[object Object]"</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">{} + []</code></pre>
+					<pre class="fragment"><code class="javascript">0</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">'wat' + 1</code></pre>
+					<pre class="fragment"><code class="javascript">"wat1"</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="javascript">'wat' - 1</code></pre>
+					<pre class="fragment"><code class="javascript">NaN</code></pre>
+				</section>
+
+				<section>
+					<h2>Lesson</h2>
+					<p>This is why you use <code>===</code>.</p>
+				</section>
+
+				<section>
+					<h2>Write JavaScript with only <code>()[]{}!+</code></h2>
+				</section>
+
+				<section>
+					<h2>Building Blocks</h2>
+					<ul>
+						<li><code>[]</code> - access arrays/strings and object properties</li>
+						<li><code>()</code> - call functions and avoid errors</li>
+						<li><code>{}</code> - get <code>NaN</code> and <code>"[object Object]"</code></li>
+						<li><code>+</code> - append strings, cast things to numbers</li>
+						<li><code>!</code> - cast things to booleans</li>
+					</ul>
+				</section>
+
+				<section>
+						<h2>Booleans</h2>
+						<ul>
+							<li><code>0</code> - <code>+[]</code></li>
+							<li><code>true</code> - <code>![]</code></li>
+							<li><code>false</code> - <code>!![]</code></li>
+							<li><code>1</code> - <code>+!![]</code></li>
+						</ul>
+				</section>
+
+				<section>
+					<h2>Digits</h2>
+					<pre><code class="javascript">0 = +[]
+1 = +!![]
+2 = !+[]+!![]
+3 = !+[]+!![]+!![]
+4 = !+[]+!![]+!![]+!![]
+5 = !+[]+!![]+!![]+!![]+!![]
+6 = !+[]+!![]+!![]+!![]+!![]+!![]
+7 = !+[]+!![]+!![]+!![]+!![]+!![]+!![]
+8 = !+[]+!![]+!![]+!![]+!![]+!![]+!![]+!![]
+9 = !+[]+!![]+!![]+!![]+!![]+!![]+!![]+!![]+!![]</code></pre>
+				</section>
+
+				<section>
+					<h2>Strings</h2>
+					<pre><code class="javascript">true = !![]
+false = ![]
+undefined = [+[]]
+NaN = +{} (object to number)
+[object object] = []+{}</code></pre>
+					<pre><code class="javascript">(!![]+{})[+[]] // > "t"</code></pre>
+				</section>
+
+				<section>
+					<h2>More Strings</h2>
+					<p>Make strings <code>"1e100"</code> and <code>"1e1000"</code> and convert them back to numbers to get <code>"1e+100"</code> and <code>Infinity</code>. This gets you "y", "I" and "+".</p>
+					<pre><code>SPACE, [ ] + a b c d e f i I j l n N o O r s t u y</code></pre>
+				</section>
+
+				<section>
+					<h2>Functions</h2>
+					<p>Functions available with our current characters.</p>
+					<pre><code class="javascript">Function = array["sort"]["constructor"]
+Array = array["constructor"]
+Bolean = false["constructor"]
+Number = 0["constructor"]
+Object fom {}["constructor"]
+String fom string["constructor"]
+Function.prototype.call = f["call"]
+String.prototype.concat = string["concat"]
+Array.prototype.join = array["join"]
+Array.prototype.slice = array["slice"]
+Array.prototype.sort = array["sort"]</code></pre>
+				</section>
+
+				<section>
+					<h2>Everything Else</h2>
+					<p>If you get a "p" and "%" you can use <code>unescape("%" + HEXA_ASCII_VAL)</code> to get any character.</p>
+					<pre><code>([+[]]["sort"]["constructor"]("return location")()+(+{}))[3] = "p"</code></pre>
+					<pre><code>escape('[')[0] = "%"</code></pre>
+				</section>
+
+				<section>
+					<h3>With every character, digit and primitive we can build strings and execute arbitrary code using <br> <code>Function('code string')()</code>.</h3>
+				</section>
+
+				<section>
+					<h2>
+						<a href="http://patriciopalladino.com/files/hieroglyphy/">Demo</a> by <a href="http://patriciopalladino.com/">Patricio Palladino</a>
+					</h2>
+				</section>
+
+				<section>
+					<h2>Why the hell would you want to do this?</h2>
+					<p class="fragment"><a href="http://blog.infobytesec.com/2012/09/bypassing-wafs-with-non-alphanumeric-xss.html">Because your a hacker</a></p>
+				</section>
+
+				<section>
+					<h2>JavaScript is Weird</h2>
+				</section>
+
+				<section>
+					<h2>And I Love It.</h2>
+				</section>
+
+				<section>
+					<h1>Thanks!</h1>
+					<p>Twitter: <a href="http://twitter.com/patrickarlt">@patrickarlt</a></p>
+					<p>Slides: <a href="http://patrickarlt.github.io/dev-summit-2015-javascript-the-weird-parts">http://arcg.is/1wFtcQK</a></p>
+					<div class="center-text">
+						<img src="esri-logo.png" alt="Esri" width="280" height="118" >
+					</div>
+				</section>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -69,8 +359,8 @@
 				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
-				// parallaxBackgroundImage: '/background.jpg',
-				// parallaxBackgroundSize: '2193px 1334px',
+				parallaxBackgroundImage: '/background.jpg',
+				parallaxBackgroundSize: '2193px 1334px',
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
