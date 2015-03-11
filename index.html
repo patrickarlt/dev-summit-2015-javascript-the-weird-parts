@@ -82,7 +82,7 @@ alert(a);</code></pre>
 				</section>
 
 				<section>
-					<h2>Hoisting &amp; Variable Scope</h2>
+					<h2>Hoisting &amp; Scope</h2>
 				</section>
 
 				<section>
@@ -156,7 +156,7 @@ alert(a); // 1</code></pre>
 					<p>There is a reason your linter yells at you about declaring all variables and functions at the top.</p>
 				</section>
 
-				<section></section>
+				<section class=""><h2>Infinity</h2></section>
 
 				<section>
 					<pre><code class="javascript">Math.max() > Math.min()</code></pre>
@@ -184,11 +184,16 @@ Math.min() // > Infinity</code></pre>
 				</section>
 
 				<section>
+					<pre><code class="javascript">undefined == Infinity</code></pre>
+					<pre class="fragment"><code class="javascript">false</code></pre>
+				</section>
+
+				<section>
 					<pre><code class="javascript">isFinite(null)</code></pre>
 					<pre class="fragment"><code class="javascript">true</code></pre>
 				</section>
 
-				<section></section>
+				<section class="center-slide"><h2>Types</h2></section>
 
 				<section>
 					<pre><code class="javascript">[] + []</code></pre>
@@ -285,7 +290,7 @@ NaN = +{} (object to number)
 					<p>Functions available with our current characters.</p>
 					<pre><code class="javascript">Function = array["sort"]["constructor"]
 Array = array["constructor"]
-Bolean = false["constructor"]
+Boolean = false["constructor"]
 Number = 0["constructor"]
 Object fom {}["constructor"]
 String fom string["constructor"]
@@ -309,7 +314,7 @@ Array.prototype.sort = array["sort"]</code></pre>
 
 				<section>
 					<h2>
-						<a href="http://patriciopalladino.com/files/hieroglyphy/">Demo</a> by <a href="http://patriciopalladino.com/">Patricio Palladino</a>
+						<a href="http://patriciopalladino.com/files/hieroglyphy/">Demo</a> by <a href="http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html">Patricio Palladino</a>
 					</h2>
 				</section>
 
@@ -328,6 +333,7 @@ Array.prototype.sort = array["sort"]</code></pre>
 
 				<section>
 					<h1>Thanks!</h1>
+					<p><a href="www.esri.com/RateMyDevSummitSession">www.esri.com/RateMyDevSummitSession</a></p>
 					<p>Twitter: <a href="http://twitter.com/patrickarlt">@patrickarlt</a></p>
 					<p>Slides: <a href="http://patrickarlt.github.io/dev-summit-2015-javascript-the-weird-parts">http://arcg.is/1wFtcQK</a></p>
 					<div class="center-text">
@@ -359,8 +365,8 @@ Array.prototype.sort = array["sort"]</code></pre>
 				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
-				parallaxBackgroundImage: 'background.jpg',
-				parallaxBackgroundSize: '2193px 1334px',
+				// parallaxBackgroundImage: 'background.jpg',
+				// parallaxBackgroundSize: '2193px 1334px',
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
